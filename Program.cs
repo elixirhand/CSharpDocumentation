@@ -28,8 +28,8 @@ namespace Employee
                 WriteLine("Please enter first name");
 
                 string firstName = ReadLine();
-
-                if (firstName == null || firstName.Length == 0 || IsAllWhiteSpace(firstName))
+                //Instead
+                if (string.IsNullOrWhiteSpace(firstName))
                 {
                     WriteLine("ERROR: Invalid first name");
                 }

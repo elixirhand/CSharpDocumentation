@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using static System.Console;
 
@@ -19,36 +20,31 @@ namespace Employee
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Console.WriteLine(GetFirstName());
+            Console.WriteLine(GetEmployeeCode());
         }
-        private static string GetFirstName()
+        private static char GetEmployeeCode()
         {
             while (true)
             {
-                WriteLine("Please enter first name");
+                WriteLine("Please enter employee code");
 
-                string firstName = ReadLine();
-                //Instead
-                if (string.IsNullOrWhiteSpace(firstName))
+                char employeeCode = ReadLine().First(); // Additional validation omitted
+                UnicodeCategory ucCategory = char.GetUnicodeCategory(employeeCode);
+
+                bool isValidUnicode = ucCategory != UnicodeCategory.OtherNotAssigned;
+
+                if (!isValidUnicode)
                 {
-                    WriteLine("ERROR: Invalid first name");
+                    WriteLine();
+                    WriteLine("Error: Invalid employee code (Invalid character)");
                 }
                 else
                 {
-                    return firstName;
+                    return employeeCode;
                 }
+                
             }
-            
-         }
-
-          private static bool IsAllWhiteSpace(string s)
-        {
-            if (s.Replace(" ", "").Length == 0) // doesn't take into accounts tabs
-            {
-                return true;
-            }
-
-            return false;
         }
-    }
+
+     }
 }

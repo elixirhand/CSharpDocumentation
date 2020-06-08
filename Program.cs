@@ -19,10 +19,38 @@ namespace Employee
 
         static void Main(string[] args)
         {
+            Employee employee = new Employee();
             Console.WriteLine("Hello World!");
-            Console.WriteLine(GetEmployeeCode());
-            Console.WriteLine(GetProductivity());
+            employee.FirstName = GetFirstName();
+            employee.EmployeeCode = GetEmployeeCode();
+            employee.ProductivityRating = GetProductivity();
+            DisplayEmployee(employee);
+
+            WriteLine();
+            WriteLine("Press enter to exit.");
+            ReadLine();
         }
+
+
+        private static string GetFirstName()
+        {
+            while (true)
+            {
+                WriteLine("Please enter first name");
+
+                string firstName = ReadLine();
+
+                if (string.IsNullOrWhiteSpace(firstName))
+                {
+                    WriteLine("ERROR: Invalid first name");
+                }
+                else
+                {
+                    return firstName;
+                }
+            }
+        }
+
         private static char GetEmployeeCode()
         {
             while (true)
@@ -56,5 +84,15 @@ namespace Employee
             return rating;
         }
 
+        private static void DisplayEmployee(Employee employee)
+        {
+            WriteLine("Employee Details");
+            WriteLine("----------------");
+            WriteLine();
+
+            WriteLine("First Name: " + employee.FirstName + " Employee Code: " + employee.EmployeeCode);
+        }
+
+       
     }
 }

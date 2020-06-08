@@ -90,7 +90,11 @@ namespace Employee
             WriteLine("----------------");
             WriteLine();
 
-            WriteLine("First Name: " + employee.FirstName + " Employee Code: " + employee.EmployeeCode);
+            
+            // Instead
+            string line = string.Format("First Name: {0} Employee Code: {1}",
+                employee.FirstName, employee.EmployeeCode);
+            WriteLine(line);
         }
 
        

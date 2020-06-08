@@ -21,6 +21,7 @@ namespace Employee
         {
             Console.WriteLine("Hello World!");
             Console.WriteLine(GetEmployeeCode());
+            Console.WriteLine(GetProductivity());
         }
         private static char GetEmployeeCode()
         {
@@ -46,5 +47,14 @@ namespace Employee
             }
         }
 
-     }
+        private static int GetProductivity()
+        {
+            WriteLine("Please enter productivity rating (-100 to 100) enter 0 for new employees");
+
+            int rating = int.Parse(ReadLine()); // Additional validation omitted
+
+            return rating;
+        }
+
+    }
 }

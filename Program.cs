@@ -95,6 +95,8 @@ namespace Employee
             string line = string.Format("First Name: {0} Employee Code: {1}",
                 employee.FirstName, employee.EmployeeCode);
             WriteLine(line);
+
+            WriteLine($"Productivity rating: {employee.ProductivityRating}");
         }
 
        

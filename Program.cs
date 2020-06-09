@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using static System.Console;
 
 namespace Employee
@@ -27,7 +28,7 @@ namespace Employee
             GetSkillsFor(employee);
             WriteLine();
 
-            DisplayEmployee(employee);
+            DisplayEmployeeSkills(employee);
 
             WriteLine();
             WriteLine("Press enter to exit.");
@@ -100,16 +101,17 @@ namespace Employee
             
         }
 
-        private static void DisplayEmployee(Employee employee)
+        private static void DisplayEmployeeSkills(Employee employee)
         {
-
-            string skills = "";
+            // instead 
+            var sb = new StringBuilder();
             foreach (var skill in employee.Skills)
             {
-                skills += $"{skill}, ";
+                sb.Append(skill);
+                sb.Append(", ");
             }
 
-            WriteLine($"Skills: {skills}");
+            WriteLine($"Skills: {sb}");
         }
 
        

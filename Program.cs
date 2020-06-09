@@ -24,8 +24,8 @@ namespace Employee
             Console.WriteLine("Hello World!");
             //employee.FirstName = GetFirstName();
             //employee.EmployeeCode = GetEmployeeCode();
-            //employee.ProductivityRating = GetProductivity();
-            GetSkillsFor(employee);
+            employee.ProductivityRating = GetProductivity();
+            //GetSkillsFor(employee);
             WriteLine();
 
             DisplayEmployeeSkills(employee);
@@ -103,15 +103,11 @@ namespace Employee
 
         private static void DisplayEmployeeSkills(Employee employee)
         {
-            // instead 
-            var sb = new StringBuilder();
-            foreach (var skill in employee.Skills)
-            {
-                sb.Append(skill);
-                sb.Append(", ");
-            }
+            string productivity = string.Format(new EmployessProductivityFormatProvider(),
+                "Productivity rating: {0}",
+                employee.ProductivityRating);
 
-            WriteLine($"Skills: {sb}");
+            WriteLine(productivity);
         }
 
        

@@ -57,20 +57,23 @@ namespace Employee
             {
                 WriteLine("Please enter employee code");
 
-                char employeeCode = ReadLine().First(); // Additional validation omitted
-                UnicodeCategory ucCategory = char.GetUnicodeCategory(employeeCode);
+               
+                    char employeeCode = ReadLine().First(); // Additional validation omitted
 
-                bool isValidUnicode = ucCategory != UnicodeCategory.OtherNotAssigned;
+               
+                    UnicodeCategory ucCategory = char.GetUnicodeCategory(employeeCode);
 
-                if (!isValidUnicode)
-                {
-                    WriteLine();
-                    WriteLine("Error: Invalid employee code (Invalid character)");
-                }
-                else
-                {
-                    return employeeCode;
-                }
+                    bool isValidUnicode = ucCategory != UnicodeCategory.OtherNotAssigned;
+
+                    if (!isValidUnicode)
+                    {
+                        WriteLine();
+                        WriteLine("Error: Invalid employee code (Invalid character)");
+                    }
+                    else
+                    {
+                        return employeeCode;
+                    }             
                 
             }
         }
@@ -97,6 +100,9 @@ namespace Employee
             WriteLine(line);
 
             WriteLine($"Productivity rating: {employee.ProductivityRating}");
+            //Instead using conditional formating
+            const string conditionalFormating = "(good employee) #;(bad employee) -#;(new employee - no productivity record yet)";
+            WriteLine(employee.ProductivityRating.ToString(conditionalFormating));
         }
 
        

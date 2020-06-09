@@ -21,9 +21,12 @@ namespace Employee
         {
             Employee employee = new Employee();
             Console.WriteLine("Hello World!");
-            employee.FirstName = GetFirstName();
-            employee.EmployeeCode = GetEmployeeCode();
-            employee.ProductivityRating = GetProductivity();
+            //employee.FirstName = GetFirstName();
+            //employee.EmployeeCode = GetEmployeeCode();
+            //employee.ProductivityRating = GetProductivity();
+            GetSkillsFor(employee);
+            WriteLine();
+
             DisplayEmployee(employee);
 
             WriteLine();
@@ -86,23 +89,27 @@ namespace Employee
 
             return rating;
         }
+        
+        private static void GetSkillsFor(Employee employee)
+        {
+            // Simulate getting skills from user-input
+            employee.Skills.Add("C#");
+            employee.Skills.Add("HTML");
+            employee.Skills.Add("SQL");
+            employee.Skills.Add("JSON");
+            
+        }
 
         private static void DisplayEmployee(Employee employee)
         {
-            WriteLine("Employee Details");
-            WriteLine("----------------");
-            WriteLine();
 
-            
-            // Instead
-            string line = string.Format("First Name: {0} Employee Code: {1}",
-                employee.FirstName, employee.EmployeeCode);
-            WriteLine(line);
+            string skills = "";
+            foreach (var skill in employee.Skills)
+            {
+                skills += $"{skill}, ";
+            }
 
-            WriteLine($"Productivity rating: {employee.ProductivityRating}");
-            //Instead using conditional formating
-            const string conditionalFormating = "(good employee) #;(bad employee) -#;(new employee - no productivity record yet)";
-            WriteLine(employee.ProductivityRating.ToString(conditionalFormating));
+            WriteLine($"Skills: {skills}");
         }
 
        

@@ -24,11 +24,11 @@ namespace Employee
             Console.WriteLine("Hello World!");
             //employee.FirstName = GetFirstName();
             //employee.EmployeeCode = GetEmployeeCode();
-            employee.ProductivityRating = GetProductivity();
+            //employee.ProductivityRating = GetProductivity();
             //GetSkillsFor(employee);
             WriteLine();
-
-            DisplayEmployeeSkills(employee);
+            Console.WriteLine($"DOB: {GetDateOfBirth()}");
+            //(employee);
 
             WriteLine();
             WriteLine("Press enter to exit.");
@@ -112,6 +112,15 @@ namespace Employee
             WriteLine(productivity);
         }
 
-       
+       private static DateTime GetDateOfBirth()
+        {
+            WriteLine("Please enter your date of birth");
+            string input = ReadLine();
+
+            //DateTime dateOfBirth = DateTime.Parse(input);
+            DateTime dateOfBirth = DateTime.ParseExact(input, "MM/dd/yyyy", null);
+
+            return dateOfBirth;
+        }
     }
 }

@@ -86,7 +86,9 @@ namespace Employee
         {
             WriteLine("Please enter productivity rating (-100 to 100) enter 0 for new employees");
 
-            int rating = int.Parse(ReadLine()); // Additional validation omitted
+            string input = ReadLine();
+            
+            int rating = int.Parse(input, NumberStyles.AllowTrailingSign); // Additional validation omitted
 
             return rating;
         }

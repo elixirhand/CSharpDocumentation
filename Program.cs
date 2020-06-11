@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using static System.Console;
 
@@ -15,6 +16,7 @@ namespace Employee
             public char EmployeeCode { get; set; }
             public int ProductivityRating { get; set; }
             public List<string> Skills { get; } = new List<string>();
+            public BigInteger Salary { get; set; }
             public string Bio { get; set; }
         }
 
@@ -27,8 +29,11 @@ namespace Employee
             //employee.ProductivityRating = GetProductivity();
             //GetSkillsFor(employee);
             WriteLine();
-            Console.WriteLine($"DOB: {GetDateOfBirth()}");
+            //Console.WriteLine($"DOB: {GetDateOfBirth()}");
             //(employee);
+            employee.Salary = GetSalary();
+            DisplayEmployeeSkills(employee);
+
 
             WriteLine();
             WriteLine("Press enter to exit.");
@@ -103,16 +108,7 @@ namespace Employee
             
         }
 
-        private static void DisplayEmployeeSkills(Employee employee)
-        {
-            string productivity = string.Format(new EmployessProductivityFormatProvider(),
-                "Productivity rating: {0}",
-                employee.ProductivityRating);
-
-            WriteLine(productivity);
-        }
-
-       private static DateTime GetDateOfBirth()
+        private static DateTime GetDateOfBirth()
         {
             WriteLine("Please enter your date of birth");
             string input = ReadLine();
@@ -129,5 +125,23 @@ namespace Employee
 
             return dateOfBirth;
         }
+        
+        //This method will populate the employees salary
+        private static BigInteger GetSalary()
+        {
+            WriteLine("Please enter salary");
+
+            string input = ReadLine();
+
+            BigInteger value = BigInteger.Parse(input);
+
+            return value;
+        }
+
+        private static void DisplayEmployeeSkills(Employee employee)
+        {
+            WriteLine($"Salary: {employee.Salary}");
+        }
+
     }
 }

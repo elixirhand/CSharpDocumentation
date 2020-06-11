@@ -18,6 +18,7 @@ namespace Employee
             public List<string> Skills { get; } = new List<string>();
             public BigInteger Salary { get; set; }
             public string Bio { get; set; }
+            public int Id { get; set; }
         }
 
         static void Main(string[] args)
@@ -31,7 +32,8 @@ namespace Employee
             WriteLine();
             //Console.WriteLine($"DOB: {GetDateOfBirth()}");
             //(employee);
-            employee.Salary = GetSalary();
+            //employee.Salary = GetSalary();
+            employee.Id = GenerateRandomId();
             DisplayEmployeeSkills(employee);
 
 
@@ -138,9 +140,28 @@ namespace Employee
             return value;
         }
 
+        private static int GenerateRandomId()
+        {
+            Random rnd = new Random(); // system clock as seed value
+            Random rnd2 = new Random(42); // explicit seed value
+            Random rnd3 = new Random(42); // explicit seed value
+
+            int x = rnd2.Next();
+            int y = rnd3.Next();
+            int z = rnd.Next();
+
+            Random r1 = new Random();
+            Random r2 = new Random();
+
+            int r1Value = r1.Next();
+            int r2Value = r2.Next();
+           
+            return rnd.Next();
+        }
+
         private static void DisplayEmployeeSkills(Employee employee)
         {
-            WriteLine($"Salary: {employee.Salary}");
+            WriteLine($"Id: {employee.Id}");
         }
 
     }

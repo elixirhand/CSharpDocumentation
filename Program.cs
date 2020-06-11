@@ -20,6 +20,7 @@ namespace Employee
             public BigInteger Salary { get; set; }
             public string Bio { get; set; }
             public int Id { get; set; }
+            public List<int> WorkDays { get; set; }
         }
 
         static void Main(string[] args)
@@ -34,7 +35,8 @@ namespace Employee
             //Console.WriteLine($"DOB: {GetDateOfBirth()}");
             //(employee);
             //employee.Salary = GetSalary();
-            employee.Id = GenerateRandomId();
+            //employee.Id = GenerateRandomId();
+            employee.WorkDays = GenerateDefaultWorkDays();
             DisplayEmployeeSkills(employee);
 
 
@@ -141,25 +143,42 @@ namespace Employee
             return value;
         }
 
+        /// <summary>
+        /// Instead using Cryptographically Secure Random numbers 
+        /// Because this class (RNGCryptoServiceProvider : RandomNumberGenerator : IDisposable) 
+        /// implements IDisposable that is why wrpped into using
+        /// </summary>
+        /// <returns></returns>
+        
         private static int GenerateRandomId()
         {
-            //Instead using Cryptographically Secure Random numbers
+            using RNGCryptoServiceProvider rnd = new RNGCryptoServiceProvider(); 
+            byte[] randomBytesNumber = new byte[4];
 
-            using (RNGCryptoServiceProvider rnd = new RNGCryptoServiceProvider()) //Because this class (RNGCryptoServiceProvider : RandomNumberGenerator : IDisposable) implements IDisposable that is why wrpped into using
-            {
-                byte[] randomBytesNumber = new byte[4];
+            rnd.GetBytes(randomBytesNumber);
 
-                rnd.GetBytes(randomBytesNumber);
+            int result = BitConverter.ToInt32(randomBytesNumber, 0);
 
-                int result = BitConverter.ToInt32(randomBytesNumber, 0);
+            return result;
+        }
 
-                return result;
-            }
+        private static List<int> GenerateDefaultWorkDays()
+        {
+            //List<int> workDays = new List<int>();
+
+            //for (int i = 1; i < 6; i++)
+            //{
+            //    workDays.Add(i);
+            //}
+
+            //return workDays;
+
+            return Enumerable.Range(1, 5).ToList(); 
         }
 
         private static void DisplayEmployeeSkills(Employee employee)
         {
-            WriteLine($"Id: {employee.Id}");
+            WriteLine($"Work Days: {string.Join(",", employee.WorkDays)}");
         }
 
     }

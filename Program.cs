@@ -120,6 +120,13 @@ namespace Employee
             //DateTime dateOfBirth = DateTime.Parse(input);
             DateTime dateOfBirth = DateTime.ParseExact(input, "MM/dd/yyyy", null);
 
+            //Adding multiple DateFormat
+            DateTime dateTime1 = DateTime.Parse("01/12/2000");
+            DateTime dateTime2 = DateTime.Parse("01/12/2000", null, DateTimeStyles.AssumeUniversal);
+            DateTime dateTime3 = DateTime.Parse("01/12/2000", null, DateTimeStyles.AssumeLocal);
+            DateTime dateTime4 = DateTime.Parse("13:30:00");
+            DateTime dateTime5 = DateTime.Parse("13:30:00", null, DateTimeStyles.NoCurrentDateDefault);
+
             return dateOfBirth;
         }
     }

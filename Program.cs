@@ -36,7 +36,7 @@ namespace Employee
             //(employee);
             //employee.Salary = GetSalary();
             //employee.Id = GenerateRandomId();
-            employee.WorkDays = GenerateDefaultWorkDays();
+            //employee.WorkDays = GenerateDefaultWorkDays();
             DisplayEmployeeSkills(employee);
 
 
@@ -173,12 +173,12 @@ namespace Employee
 
             //return workDays;
 
-            return Enumerable.Range(1, 5).ToList(); 
+            return Enumerable.Range(1, 5).Select(x => x * 2).ToList(); 
         }
 
         private static void DisplayEmployeeSkills(Employee employee)
         {
-            WriteLine($"Work Days: {string.Join(",", employee.WorkDays)}");
+            WriteLine($"Work Days: {string.Join(",", employee.WorkDays = GenerateDefaultWorkDays())}");
         }
 
     }

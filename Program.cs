@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography;
 using System.Text;
 using static System.Console;
 
@@ -142,21 +143,18 @@ namespace Employee
 
         private static int GenerateRandomId()
         {
-            Random rnd = new Random(); // system clock as seed value
-            Random rnd2 = new Random(42); // explicit seed value
-            Random rnd3 = new Random(42); // explicit seed value
+            //Instead using Cryptographically Secure Random numbers
 
-            int x = rnd2.Next();
-            int y = rnd3.Next();
-            int z = rnd.Next();
+            using (RNGCryptoServiceProvider rnd = new RNGCryptoServiceProvider()) //Because this class (RNGCryptoServiceProvider : RandomNumberGenerator : IDisposable) implements IDisposable that is why wrpped into using
+            {
+                byte[] randomBytesNumber = new byte[4];
 
-            Random r1 = new Random();
-            Random r2 = new Random();
+                rnd.GetBytes(randomBytesNumber);
 
-            int r1Value = r1.Next();
-            int r2Value = r2.Next();
-           
-            return rnd.Next();
+                int result = BitConverter.ToInt32(randomBytesNumber, 0);
+
+                return result;
+            }
         }
 
         private static void DisplayEmployeeSkills(Employee employee)
